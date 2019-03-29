@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :users, only: [:show] do
+    resources :books, except: [:destroy]
+  end
   resources :books
   get '/signup', to: 'users#new'
   post '/users', to: 'users#create'
