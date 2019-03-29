@@ -1,0 +1,15 @@
+<h3>Title: <%= @book.title %><br></h3>
+<h4>Summary: <%= @book.summary %><br></h4>
+  <%# <h5><p>Comments:</h5> <% @book.comments.each do |c| %></p>
+    
+  <%# end %>
+<h5>Publish: <%= @book.publication_year %><br></h5>
+
+
+<%= link_to "Back", books_path, class: 'btn btn-secondary' %>
+<%# <% if current_user == @book.user %> 
+  <%# <%= link_to "Edit", edit_user_book_path(current_user, @book), class: 'btn btn-secondary' %> 
+  <%= form_tag book_path(@book), method: "delete", data: { confirm: "Are you sure you want to delete this item?" } do %>
+    <%= submit_tag "Delete", class: 'btn btn-danger' %>
+  <% end %> 
+<%# <% end %> 
