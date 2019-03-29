@@ -3,7 +3,7 @@ class BooksController < ApplicationController
     skip_before_action :require_login, except: [:index, :show]
     before_action :require_author, only: [:new, :create, :edit, :update, :destroy]
     before_action :set_book, only: [:show]
-    before_action :set_author_book, only: [:edit]
+    before_action :set_author_book, only: [:edit, :update]
     
     def index
         if params[:user_id]
