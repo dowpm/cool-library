@@ -1,13 +1,16 @@
 class BooksController < ApplicationController
-    before_action :set_book, except: [:index, :create, :new]
+    # before_action :require_login, only: [:index, :show]
+    skip_before_action :require_login, except: [:index, :show]
+    before_action :require_author, only: [:new, :create, :edit, :update, :destroy]
+    before_action :set_book, only: [:show]
+    before_action :set_author_book, only: [:edit]
     
     def index
-        # if params[:user_id]
-        #   @user = current_user
-        #   @books = @user.books
-        # else
+        if params[:user_id]
+          @books = @current_user.books
+        else
           @books = Book.all
-        # end
+        end
     end
 
     def new
@@ -15,7 +18,7 @@ class BooksController < ApplicationController
     end
 
     def create
-        @book = Book.new book_params
+        @book = @current_user.books.build book_params
         if @book.save
             redirect_to books_path
         else
@@ -32,9 +35,8 @@ class BooksController < ApplicationController
     end
 
     def edit
-        # @user = current_user
         if !@book
-          flash[:notice] = "book does not exist for this user."
+          flash[:notice] = "This book doesn't yours."
           render plain: flash[:notice]
         #   redirect_to books_path
         end
@@ -57,6 +59,10 @@ class BooksController < ApplicationController
 
     def set_book
         @book = Book.find_by(id: params[:id])
+    end
+
+    def set_author_book
+        @book = @current_user.books.find_by(id: params[:id])
     end
 
     def book_params
