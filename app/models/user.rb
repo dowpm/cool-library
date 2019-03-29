@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    has_many :books
+    
     validates :email, presence: true, uniqueness: true
     validates :full_name, presence: true
     validates :password, presence: true, length: { in: 6..100 }
