@@ -1,0 +1,19 @@
+
+<h1><%= @current_user.full_name %></h1>
+
+<div class="list-group"> 
+    <% if @current_user.author%>
+        <h3>Your books:</h3>
+        <% @current_user.books.each do |book| %>
+        <h4 class="list-group-item"><%= link_to book.title, user_book_path(@current_user.full_name, book.id) %></h4>
+        <% end %>
+    <% else%>
+        <h3>Your reviews:</h3>
+        <% @current_user.books.each do |book| %>
+        <h4 class="list-group-item"><%= link_to book.title, user_book_path(@current_user.full_name, book.id) %></h4>
+        <% end %>
+    <% end %>
+</div>
+<br>
+<p> <%= link_to "Add a new book", new_user_book_path(@current_user.full_name), class: "btn btn-primary" %> </p>
+<p> <%# link_to "Add a new review", new_review_path, class: "btn btn-primary" %> </p>
