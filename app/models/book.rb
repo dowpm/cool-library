@@ -1,5 +1,7 @@
 class Book < ApplicationRecord
-    belongs_to :user
+    belongs_to :author, foreign_key: "user_id", class_name: "User"
+    has_many :reviews
+    has_many :reviewers, through: :reviews, source: :user
 
     validates :publication_year,
         numericality: { only_integer: true },
@@ -13,3 +15,9 @@ class Book < ApplicationRecord
         user.full_name
     end
 end
+# ti = Book.find 2
+# ti.reviewers
+# mc = User.find 2
+# yo = User.find 1
+# bad_malis = Review.new(stars:1, comments: 'bad book ever')
+# good_malis = Review.new(stars:5, comments: 'good book ever')

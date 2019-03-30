@@ -1,8 +1,8 @@
 class User < ApplicationRecord
     has_many :books
 
-    # has_many :reviewed_books, foreign_key: "user_id", class_name: "Review"
-    # has_many :reviewed_books, through: :reviews, -> { where(user_id: 1) }
+    has_many :reviews
+    has_many :reviewed_books, through: :reviews, source: :book
 
     validates :email, presence: true, uniqueness: true
     validates :full_name, presence: true
