@@ -11,9 +11,30 @@ class Book < ApplicationRecord
         message: "should be a four-digit year"
         }
 
+    def average_rating
+        Review.where(book_id: id).average(:stars).to_i
+    end
+
     def author_name
         author.full_name
     end
+
+    def popularity_rating
+        self.average_rating + self.ratings.count
+  end
+
+  def popular?
+    if self.average_rating >= 3
+       "#{self.full_name}" + " " + "#{self.popularity_rating}"
+    end
+  end
+
+  def self.popularity
+
+    Wine.all.sort_by do |wine|
+      wine.average_rating
+    end.reverse
+  end
 end
 # ti = Book.find 2
 # ti.reviewers
