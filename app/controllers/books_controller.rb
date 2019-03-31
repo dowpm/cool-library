@@ -32,6 +32,7 @@ class BooksController < ApplicationController
           render plain: flash[:notice]
         #   redirect_to books_path
         end
+        @review = @book.reviews.build
     end
 
     def edit
