@@ -32,7 +32,7 @@ class BooksController < ApplicationController
           render plain: flash[:notice]
         #   redirect_to books_path
         end
-        @review = @book.reviews.build
+        @review = @book.reviews.build(user_id: @current_user.id)
     end
 
     def edit
