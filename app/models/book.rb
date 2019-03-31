@@ -36,9 +36,3 @@ class Book < ApplicationRecord
     end.reverse
   end
 end
-# ti = Book.find 2
-# ti.reviewers
-# mc = User.find 2
-# yo = User.find 1
-# bad_malis = Review.new(stars:1, comments: 'bad book ever')
-# good_malis = Review.new(stars:5, comments: 'good book ever')
