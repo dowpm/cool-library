@@ -1,0 +1,38 @@
+<% if @review.errors.any? %>
+  <div class="notice alert-warning">
+      <p>There were some errors:</p>
+      <br>
+        <% @review.errors.full_messages.each do |message| %>
+          <p><%= message %></p>
+        <% end %>
+    </div>
+<% end %>
+<br>
+  <div class="form-horizontal">
+  <%= form_for @review do |f| %>
+
+      <div>
+          <%# book_id_field(@review) %>
+          <%= f.hidden_field :user_id %>
+      </div>
+        
+
+    <div class="form-group">  
+      <%= f.label :stars, class: "col-md-4 control-label" %>
+       <div class="col-md-4">
+        <%= f.select :stars, [[1], [2], [3], [4], [5]], class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :comments, class: "col-md-4 control-label" %>
+      <div class="col-md-4"> 
+        <%= f.text_area :comments, class: "form-control" %>
+      </div>
+    </div>
+
+    <div>
+      <%= f.submit %>
+    </div>
+<% end %>
+</div>
