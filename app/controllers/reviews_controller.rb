@@ -24,6 +24,20 @@ class ReviewsController < ApplicationController
         end
     end
 
+    def edit
+        # @book = Book.find_by(id: params[:book_id])
+        
+        if @review.user_id != @current_user.id
+          redirect_to books_path
+        end
+    end
+
+    def update
+        @review.update(review_params)
+
+        redirect_to review_path( @review)
+    end
+
     private
 
     def review_params
