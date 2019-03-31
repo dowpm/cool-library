@@ -12,7 +12,7 @@ class Book < ApplicationRecord
         }
 
     def author_name
-        user.full_name
+        author.full_name
     end
 end
 # ti = Book.find 2
