@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-    before_action :find_review, only: [:show, :edit, :update]
+    before_action :find_review, only: [:show, :edit, :update, :destroy]
 
     def show
         if !@review
@@ -36,6 +36,12 @@ class ReviewsController < ApplicationController
         @review.update(review_params)
 
         redirect_to review_path( @review)
+    end
+
+    def destroy
+        @review.delete
+
+        redirect_to user_path( @current_user.full_name)
     end
 
     private
