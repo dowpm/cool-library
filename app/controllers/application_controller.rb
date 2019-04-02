@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    # helper_method :logged_in?, :current_user, :require_login, :require_author
+    helper_method :logged_in?, :current_user#, :require_login, :require_author
     before_action :require_login
 
     private
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     def require_login
         puts 'require_login--------------------->'
         unless logged_in?
-        flash[:error] = "You must be logged in to access this section."
+        flash["alert alert-info"] = "You must be logged in to access this section."
         redirect_to login_path
         end
     end
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     def require_author
         puts 'require_author--------------------->'
         unless current_user.try(:author)
-            flash[:error] = "You cant access this section, you're not an author."
+            flash["alert alert-info"] = "You cant access this section, you're not an author."
             redirect_to books_path
         end
     end
