@@ -12,11 +12,12 @@
 <p><b>Average Rating:</b> <%= show_stars(@book.average_rating) %>  </p>
 
   <h5><p>Reviews:</h5>
-  <ul class="w-4 list-group justify-content-center"> 
+  <div class="row justify-content-center">
+  <ul class="list-group col-sm-8"> 
   <% @book.reviews.each do |review| %></p>
     <% if review.id%>
     
-      <%= link_to(review_path(review), class: " list-group-item list-group-item-action") do %>
+      <%= link_to(review_path(review), class: " list-group-item list-group-item-action ") do %>
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1"><%= review.user.full_name%></h5>
           <small><%= show_stars(review.stars)%></small>
@@ -28,6 +29,7 @@
     <%end%>
   <% end %>
   </ul>
+  </div>
 <p class="mb-1"><b>Add review:</b></p>
 <%= form_for @review, html: {class: 'pt-2 form-horizontal'} do |f| %>
 
@@ -55,9 +57,9 @@
 <%# link_to "Back", books_path, class: 'btn btn-secondary' %>
 
 <% if @current_user == @book.author %> 
-  <%= link_to "Edit", edit_user_book_path(@book.author_name, @book), class: 'btn btn-secondary' %> 
+  <%= link_to "Edit", edit_user_book_path(@book.author_name, @book), class: 'btn btn-primary col-sm-4' %> 
   <%= form_tag book_path(@book), method: "delete", data: { confirm: "Are you sure you want to delete this item?" } do %>
-    <%= submit_tag "Delete", class: 'btn btn-danger' %>
+    <%= submit_tag "Delete", class: 'btn btn-danger col-sm-4' %>
   <% end %> 
 <% end %>
 <div>
