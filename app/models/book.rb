@@ -24,18 +24,18 @@ class Book < ApplicationRecord
 
     def popularity_rating
         self.average_rating + self.ratings.count
-  end
-
-  def popular?
-    if self.average_rating >= 3
-       "#{self.full_name}" + " " + "#{self.popularity_rating}"
     end
-  end
 
-  def self.popularity
+    def popular?
+      if self.average_rating >= 3
+        "#{self.full_name}" + " " + "#{self.popularity_rating}"
+      end
+    end
 
-    Wine.all.sort_by do |wine|
-      wine.average_rating
-    end.reverse
-  end
+    def self.popularity
+
+      Book.all.sort_by do |book|
+        book.average_rating
+      end.reverse
+    end
 end
