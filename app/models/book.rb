@@ -10,6 +10,9 @@ class Book < ApplicationRecord
         with: /(19|20)\d{2}/i,
         message: "should be a four-digit year"
         }
+        validates :title, presence: true
+        validates :isbn, presence: true, uniqueness: true
+
 
     def average_rating
         Review.where(book_id: id).average(:stars).to_i
