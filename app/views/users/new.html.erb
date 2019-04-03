@@ -1,33 +1,51 @@
-<h1>Create an Account!</h1>
+<% title 'Sign Up' %>
 
-<% if @user.errors.any? %>
-    <div class="alert alert-danger" role="alert">
-        <div id="error_explanation">
-            <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from saving:</h2>
-            <ul>
-            <% @user.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-            </ul>
+    <h1 class="text-center">Create an Account!</h1>
+
+    <% if @user.errors.any? %>
+        <div class="alert alert-danger row justify-content-center" role="alert">
+            <div id="error_explanation">
+                <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from saving:</h2>
+                <ul>
+                <% @user.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+                </ul>
+            </div>
+        </div>
+    <% end %>
+
+<%= form_for @user, html: {class: 'form-horizontal'} do |f| %>
+    <div class="form-group row justify-content-center">
+        <%= f.label :full_name, class: 'col-md-2 col-form-label' %>
+        <%= f.text_field :full_name, class: 'form-control col-md-7' %>
+    </div>
+
+    <div class="form-group row justify-content-center">
+        <%= f.label :email, class: 'col-md-2 col-form-label' %>
+        <%= f.text_field :email, class: 'form-control col-md-7' %>
+    </div>
+
+    <div class="form-group row justify-content-center">   
+        <%= f.label :password, class: 'col-md-2 col-form-label' %>
+        <%= f.password_field :password, class: 'form-control col-md-7' %>
+    </div>
+
+    <div class="form-group row justify-content-center">
+        <%= f.label :password_confirmation, class: 'col-md-2 col-form-label' %>
+        <%= f.password_field :password_confirmation, class: 'form-control col-md-7' %>
+    </div>
+
+    <div class="form-group row justify-content-center">
+        <%= f.label :author, "Check box if you are an author", class: 'col-md-4 col-form-label' %>
+        <%= f.check_box :author, class: 'form-control col-md-1' %>
+        <div class="col-md-6"></div>
+    </div>
+
+    <div class="form-group row justify-content-center ">
+    <div class='col-md-2'></div>
+    <div class="pl-md-1 col-md-7">
+        <%= f.submit "Sign Up", class: 'form-control btn btn-success ' %><br>
         </div>
     </div>
-<% end %>
-
-<%= form_for @user do |f| %>
-    <%= f.label :full_name %>
-    <%= f.text_field :full_name %>
-
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-    
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-
-    <%= f.label :author, "Check box if you are an author" %>
-    <%= f.check_box :author%>
-    
-    <%= f.submit "Sign Up" %><br>
 <% end %>
