@@ -2,24 +2,25 @@ class SessionsController < ApplicationController
     skip_before_action :require_login
     
     def new
+        @user = User.new
     end
 
     def create
         if auth_hash = auth
             @user = User.find_or_create_by_omniauth(auth_hash)
             session[:user_id] = @user.id
-            flash[:notice] = "You're logged in."
-            # render plain: flash[:notice]
+            flash["alert alert-info"] = "You're logged in."
+            # render plain: flash["alert alert-info"]
             redirect_to user_path @user
         else
             @user = User.find_by(email: params[:email])
             if @user && @user.authenticate(params[:password])
                 session[:user_id] = @user.id
-                flash[:notice] = "You're logged in."
+                flash["alert alert-info"] = "You're logged in."
                 # render plain: flash[:notice]
                 redirect_to user_path @user
             else 
-                flash[:alert] = "Invalid username/password."
+                flash["alert alert-info"] = "Invalid username/password."
                 render :new
             end
         end
