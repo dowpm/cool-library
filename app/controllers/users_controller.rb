@@ -9,9 +9,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      flash[:notice] = "You have successfully registered and logged in."
-      render plain: flash[:notice]
-    #   redirect_to books_path
+      flash["alert alert-info"] = "You have successfully registered and logged in."
+      # render plain: flash[:notice]
+      redirect_to user_path(@user)
     else 
       render :new
     end
