@@ -1,21 +1,35 @@
+<% title 'Profile' %>
 
-<h1><%= @current_user.full_name %></h1>
+<div class="">
+<h1 class="text-center">Welcome: <%= @current_user.full_name %></h1>
 
-<div class="list-group"> 
+<ul class="list-group"> 
     <% if @current_user.author%>
         <h3>Your books:</h3>
         <% @current_user.books.each do |book| %>
-        <h4 class="list-group-item"><%= link_to book.title, user_book_path(@current_user.full_name, book.id) %></h4>
+            <h4><%=
+                    link_to book.title+' - '+show_stars(book.average_rating),
+                    user_book_path(@current_user.full_name, book.id), 
+                    class: " list-group-item list-group-item-action" 
+                %>
+            </h4>
         <% end %>
-        <p> <%= link_to "Add a new book", new_user_book_path(@current_user.full_name), class: "btn btn-primary" %> </p>
+        <p class="text-center pt-1"> 
+            <%=
+                link_to "Add a new book",
+                new_user_book_path(@current_user.full_name),
+                class: "btn btn-primary" 
+            %> 
+        </p>
     <% else%>
         <h3>Your reviews:</h3>
-        <ul>
         <% @current_user.reviews.each do |review| %>
-            <li><%= link_to review.book.title, review_path(review) %>-> <%= show_stars(review.stars)%></li>
+            <h4><%= 
+                    link_to review.book.title+' - '+show_stars(review.stars),
+                    review_path(review),
+                    class: " list-group-item list-group-item-action" 
+                %>
+            </h4>
         <% end %>
-        </ul>
     <% end %>
-</div>
-<br>
-<p> <%# link_to "Add a new review", new_review_path, class: "btn btn-primary" %> </p>
+</ul>
