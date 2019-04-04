@@ -11,14 +11,14 @@ class ReviewsController < ApplicationController
 
     def create
         if @review = Review.find_by(user_id: @current_user.id, book_id: params[:review][:book_id]) 
-            flash[:message] = "You've already reviewed this book."
+            flash["alert alert-info"] = "You've already reviewed this book."
             redirect_to user_book_path(@review.book.author_name, @review.book)
         else
             @review = Review.new(review_params)
             if @review.save
             redirect_to user_book_path(@review.book.author_name, @review.book)
             else
-                flash[:message] = "Something went wrong."
+                flash["alert alert-danger"] = "Comment's can't be blank"
                 redirect_to user_book_path(@review.book.author_name, @review.book)
             end
         end

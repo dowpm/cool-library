@@ -20,6 +20,7 @@ class BooksController < ApplicationController
     def create
         @book = @current_user.books.build book_params
         if @book.save
+            flash["alert alert-info"] = "Book successfully added."
             redirect_to books_path
         else
             render :new
@@ -28,23 +29,24 @@ class BooksController < ApplicationController
 
     def show
         if !@book
-          flash[:notice] = "Book does not exist."
-          render plain: flash[:notice]
-        #   redirect_to books_path
+          flash["alert alert-info"] = "Book does not exist."
+        #   render plain: flash[:notice]
+          redirect_to books_path
         end
         @review = @book.reviews.build(user_id: @current_user.id)
     end
 
     def edit
         if !@book
-          flash[:notice] = "This book doesn't yours."
-          render plain: flash[:notice]
-        #   redirect_to books_path
+          flash["alert alert-info"] = "This book doesn't yours."
+        #   render plain: flash[:notice]
+          redirect_to books_path
         end
     end
 
     def update
         if @book.update(book_params)
+            flash["alert alert-info"] = "Book successfully edited."
             redirect_to book_path
         else
             render :edit
@@ -53,6 +55,7 @@ class BooksController < ApplicationController
 
     def destroy
         @book.delete
+        flash["alert alert-info"] = "Book successfully removed."
         redirect_to books_path
     end
 
