@@ -41,7 +41,7 @@ class ReviewsController < ApplicationController
     def destroy
         @review.delete
 
-        redirect_to user_path( @current_user.full_name)
+        redirect_to user_book_path(@review.book.author_name, @review.book)
     end
 
     private
