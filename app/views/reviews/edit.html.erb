@@ -1,2 +1,4 @@
-<h1>Edit your review for <%= @review.book.title %> </h1>
+<% title 'Edit Review'%>
+
+<h1 class="text-center">Edit your review for <%= @review.book.title %> </h1>
 <%= render partial: 'form' %>
