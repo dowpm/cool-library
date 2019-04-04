@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
     skip_before_action :require_login
     
     def new
+        redirect_to user_path(current_user) if current_user
         @user = User.new
     end
 
