@@ -28,7 +28,7 @@ navigate to localhost:3000 inside of the web browser.
     
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/dowpm/upcoming-movies. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/dowpm/cool-library. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
 ## License
 
