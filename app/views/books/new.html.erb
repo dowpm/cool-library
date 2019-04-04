@@ -1,5 +1,6 @@
-<h2>Create a Book</h2>
+<% title 'New Book'%>
+
+<h2 class='text-center'>Create a Book</h2>
 
 <%= render partial: 'form', locals: { book: @book} %>
 
-<%= link_to "Back", books_path, class: 'btn btn-secondary' %>
