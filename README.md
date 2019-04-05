@@ -6,11 +6,6 @@ Here is where you can manage books. If you are an author, you can create, edit, 
 
 This application was built using Ruby On Rails  5.2.2.1, ruby 2.4.4 and a bit of bootstrap styling.
 
-# Installation
-
-  * Clone the project from Github, https://github.com/BrittanyTinnin/recipe-book
-  * Navigate into project directory and rom the terminal (in project directory) run Bundle install to install the gems associated with the website
-  * Run "rails s" to start a web server and navigate to localhost:3000 inside of the web browser
 ## Installation
 
 Clone this repo, and type the commands below
