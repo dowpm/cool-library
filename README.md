@@ -21,6 +21,7 @@ Clone this repo, and type the commands below
 or
 
 if you want to use facebook authentication
+
     $ thin start --ssl
 
 navigate to localhost:3000 inside of the web browser.
